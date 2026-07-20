@@ -1,0 +1,51 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# VS Code
+.vscode/
+
+# CLion
+.idea/
+
+# Compiled binaries
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Object files
+*.o
+*.obj
+
+# Debug files
+*.dSYM/
+*.pdb
+
+# Temporary files
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Game generated data
+Saved/
+Logs/
+
+# Third party build files
+ThirdParty/**/build/
