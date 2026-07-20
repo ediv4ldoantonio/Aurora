@@ -1,4 +1,5 @@
 #include "Aurora/Core/Window.h"
+#include <Aurora/Core/Logger.h>
 #include <SDL3/SDL.h>
 
 namespace Aurora
@@ -17,6 +18,7 @@ namespace Aurora
 
         m_Data = new WindowData();
 
+        AURORA_LOG_INFO("Initializing SDL video subsystem");
         SDL_Init(
             SDL_INIT_VIDEO);
 
@@ -25,12 +27,26 @@ namespace Aurora
             specification.Width,
             specification.Height,
             0);
+
+        if (m_Data->Handle)
+        {
+            AURORA_LOG_INFO("Created window: ", specification.Title, " (", specification.Width, "x", specification.Height, ")");
+        }
+        else
+        {
+            AURORA_LOG_ERROR("Failed to create window: ", specification.Title);
+        }
     }
 
     Window::~Window()
     {
-        SDL_DestroyWindow(
-            m_Data->Handle);
+        AURORA_LOG_INFO("Destroying window");
+
+        if (m_Data->Handle)
+        {
+            SDL_DestroyWindow(
+                m_Data->Handle);
+        }
 
         SDL_Quit();
 
@@ -50,6 +66,7 @@ namespace Aurora
                 SDL_EVENT_QUIT)
             {
                 m_ShouldClose = true;
+                AURORA_LOG_INFO("Window quit event received");
             }
         }
     }

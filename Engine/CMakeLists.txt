@@ -7,6 +7,7 @@ target_sources(
     PRIVATE
 
     Source/Core/Application.cpp
+    Source/Core/Logger.cpp
     Source/Core/Window.cpp
     Source/Core/Time.cpp
 )

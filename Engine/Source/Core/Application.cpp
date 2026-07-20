@@ -1,4 +1,5 @@
 #include <Aurora/Core/Application.h>
+#include <Aurora/Core/Logger.h>
 #include <Aurora/Core/Window.h>
 #include <Aurora/Core/Time.h>
 #include <chrono>
@@ -18,6 +19,8 @@ namespace Aurora
 
     void Application::Run()
     {
+        AURORA_LOG_INFO("Starting application loop");
+
         while (m_Running)
         {
             m_Window->PollEvents();
@@ -25,12 +28,20 @@ namespace Aurora
             UpdateTime();
 
             if (m_Window->ShouldClose())
+            {
+                AURORA_LOG_INFO("Closing application because the window requested shutdown");
                 m_Running = false;
+            }
         }
+
+        AURORA_LOG_INFO("Application loop exited");
     }
 
     void Application::Initialize()
     {
+        Logger::Initialize();
+        Logger::SetLevel(LogLevel::Trace);
+        AURORA_LOG_INFO("Starting Aurora application");
 
         WindowSpecification spec;
 
@@ -44,10 +55,14 @@ namespace Aurora
         m_Window =
             std::make_unique<Window>(
                 spec);
+
+        AURORA_LOG_INFO("Created window: ", spec.Title, " (", spec.Width, "x", spec.Height, ")");
     }
 
     void Application::Shutdown()
     {
+        AURORA_LOG_INFO("Shutting down Aurora application");
+        Logger::Shutdown();
     }
 
     void Application::UpdateTime()
@@ -66,6 +81,7 @@ namespace Aurora
                 .count();
 
         Time::s_DeltaTime = delta;
+        AURORA_LOG_TRACE("Frame delta time: ", delta, " seconds");
 
         lastTime = currentTime;
     }
