@@ -23,14 +23,27 @@ namespace Aurora
 
         while (m_Running)
         {
-            m_Window->PollEvents();
-
             UpdateTime();
+
+            m_Window->PollEvents();
 
             if (m_Window->ShouldClose())
             {
                 AURORA_LOG_INFO("Closing application because the window requested shutdown");
                 m_Running = false;
+            }
+
+            // Update game layers
+            for (Layer *layer : m_LayerStack)
+            {
+                layer->OnUpdate(
+                    Time::DeltaTime());
+            }
+
+            // Render layers
+            for (Layer *layer : m_LayerStack)
+            {
+                layer->OnRender();
             }
         }
 

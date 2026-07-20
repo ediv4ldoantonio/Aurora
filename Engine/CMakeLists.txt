@@ -10,6 +10,7 @@ target_sources(
     Source/Core/Logger.cpp
     Source/Core/Window.cpp
     Source/Core/Time.cpp
+    Source/Core/LayerStack.cpp
 )
 
 

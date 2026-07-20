@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Aurora/Core/LayerStack.h"
 #include <memory>
 
 namespace Aurora
@@ -14,6 +15,12 @@ namespace Aurora
 
         void Run();
 
+        void PushLayer(
+            Layer *layer)
+        {
+            m_LayerStack.PushLayer(layer);
+        }
+
     private:
         void Initialize();
         void Shutdown();
@@ -21,6 +28,7 @@ namespace Aurora
 
     private:
         std::unique_ptr<Window> m_Window;
+        LayerStack m_LayerStack;
         bool m_Running;
     };
 }

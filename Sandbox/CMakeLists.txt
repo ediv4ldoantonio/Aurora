@@ -3,6 +3,14 @@ add_executable(
     Source/main.cpp
 )
 
+target_sources(
+    Aurora
+
+    PRIVATE
+
+    Source/SandboxLayer.cpp
+)
+
 
 target_link_libraries(
     Sandbox
@@ -11,3 +19,4 @@ target_link_libraries(
 
     Aurora
 )
+
