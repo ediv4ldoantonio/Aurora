@@ -6,18 +6,42 @@
 
 void SandboxLayer::OnUpdate(float dt)
 {
+
+    auto &position =
+        m_Player.GetTransform().Position;
+
+    float speed = 200.0f;
+
     if (
-        Aurora::Input::IsKeyPressed(
-            Aurora::Key::Space))
+        Aurora::Input::IsKeyDown(
+            Aurora::Key::D))
     {
-        AURORA_LOG_INFO(
-            "Jump!");
+        position.x += speed * dt;
     }
 
     if (
-        Aurora::Input::IsKeyPressed(
+        Aurora::Input::IsKeyDown(
+            Aurora::Key::A))
+    {
+        position.x -= speed * dt;
+    }
+
+    if (
+        Aurora::Input::IsKeyDown(
             Aurora::Key::W))
     {
-        AURORA_LOG_INFO("Moving forward");
+        position.y += speed * dt;
     }
+
+    if (
+        Aurora::Input::IsKeyDown(
+            Aurora::Key::S))
+    {
+        position.y -= speed * dt;
+    }
+
+    AURORA_LOG_INFO(
+        "Player Position: {}, {}",
+        position.x,
+        position.y);
 }

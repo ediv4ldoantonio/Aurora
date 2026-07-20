@@ -1,19 +1,11 @@
 add_library(Aurora STATIC)
 
-
-target_sources(
-    Aurora
-
-    PRIVATE
-
-    Source/Core/Application.cpp
-    Source/Core/Logger.cpp
-    Source/Core/Window.cpp
-    Source/Core/Time.cpp
-    Source/Core/LayerStack.cpp
-    Source/Core/Input.cpp
-    Source/Core/KeyCodes.cpp
+file(GLOB_RECURSE AURORA_SOURCES
+    CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.cpp
 )
+
+target_sources(Aurora PRIVATE ${AURORA_SOURCES})
 
 
 target_include_directories(
