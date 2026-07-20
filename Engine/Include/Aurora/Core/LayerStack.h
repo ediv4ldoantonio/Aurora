@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-
+#include <memory>
 #include "Aurora/Core/Layer.h"
 
 namespace Aurora
@@ -15,21 +15,20 @@ namespace Aurora
 
         ~LayerStack();
 
-        void PushLayer(
-            Layer *layer);
+        void PushLayer(std::unique_ptr<Layer>);
 
-        std::vector<Layer *>::iterator begin()
+        std::vector<std::unique_ptr<Layer>>::iterator begin()
         {
             return m_Layers.begin();
         }
 
-        std::vector<Layer *>::iterator end()
+        std::vector<std::unique_ptr<Layer>>::iterator end()
         {
             return m_Layers.end();
         }
 
     private:
-        std::vector<Layer *> m_Layers;
+        std::vector<std::unique_ptr<Layer>> m_Layers;
     };
 
 }

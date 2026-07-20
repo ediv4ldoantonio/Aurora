@@ -16,9 +16,10 @@ namespace Aurora
         void Run();
 
         void PushLayer(
-            Layer *layer)
+            std::unique_ptr<Layer> layer)
         {
-            m_LayerStack.PushLayer(layer);
+            m_LayerStack.PushLayer(
+                std::move(layer));
         }
 
     private:

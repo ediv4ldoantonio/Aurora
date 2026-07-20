@@ -5,22 +5,21 @@ namespace Aurora
 
     LayerStack::~LayerStack()
     {
-
-        for (auto layer : m_Layers)
+        for (auto it = m_Layers.rbegin();
+             it != m_Layers.rend();
+             ++it)
         {
-            layer->OnDetach();
-
-            delete layer;
+            (*it)->OnDetach();
         }
     }
 
     void LayerStack::PushLayer(
-        Layer *layer)
+        std::unique_ptr<Layer> layer)
     {
-
-        m_Layers.push_back(layer);
-
         layer->OnAttach();
+
+        m_Layers.push_back(
+            std::move(layer));
     }
 
 }

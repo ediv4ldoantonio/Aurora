@@ -1,5 +1,6 @@
 #include <Aurora/Core/Application.h>
 #include "SandboxLayer.h"
+#include <memory>
 
 int main()
 {
@@ -7,7 +8,7 @@ int main()
     Aurora::Application app;
 
     app.PushLayer(
-        new SandboxLayer());
+        std::make_unique<SandboxLayer>());
 
     app.Run();
 

@@ -34,14 +34,13 @@ namespace Aurora
             }
 
             // Update game layers
-            for (Layer *layer : m_LayerStack)
+            for (auto &layer : m_LayerStack)
             {
-                layer->OnUpdate(
-                    Time::DeltaTime());
+                layer->OnUpdate(Time::DeltaTime());
             }
 
             // Render layers
-            for (Layer *layer : m_LayerStack)
+            for (auto &layer : m_LayerStack)
             {
                 layer->OnRender();
             }
