@@ -27,7 +27,5 @@ namespace Aurora
         struct WindowData;
 
         WindowData *m_Data = nullptr;
-
-        bool m_ShouldClose = false;
     };
 }

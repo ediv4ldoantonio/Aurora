@@ -1,5 +1,6 @@
-#include "Aurora/Core/Window.h"
+#include <Aurora/Core/Window.h>
 #include <Aurora/Core/Logger.h>
+#include <Aurora/Core/Input.h>
 #include <SDL3/SDL.h>
 
 namespace Aurora
@@ -60,13 +61,39 @@ namespace Aurora
         while (
             SDL_PollEvent(&event))
         {
-
-            if (
-                event.type ==
-                SDL_EVENT_QUIT)
+            switch (event.type)
             {
-                m_ShouldClose = true;
+
+            case SDL_EVENT_KEY_DOWN:
+            {
+                auto key =
+                    KeyFromSDL(event.key.key);
+
+                Input::SetKey(
+                    key,
+                    true);
+
+                break;
+            }
+
+            case SDL_EVENT_KEY_UP:
+            {
+                auto key =
+                    KeyFromSDL(event.key.key);
+
+                Input::SetKey(
+                    key,
+                    false);
+
+                break;
+            }
+            case SDL_EVENT_QUIT:
+            {
+                m_Data->ShouldClose = true;
                 AURORA_LOG_INFO("Window quit event received");
+
+                break;
+            }
             }
         }
     }

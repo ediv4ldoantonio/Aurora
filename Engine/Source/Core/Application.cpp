@@ -93,7 +93,6 @@ namespace Aurora
                 .count();
 
         Time::s_DeltaTime = delta;
-        AURORA_LOG_TRACE("Frame delta time: ", delta, " seconds");
 
         lastTime = currentTime;
     }

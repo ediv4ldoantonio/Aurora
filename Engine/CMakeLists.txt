@@ -11,6 +11,8 @@ target_sources(
     Source/Core/Window.cpp
     Source/Core/Time.cpp
     Source/Core/LayerStack.cpp
+    Source/Core/Input.cpp
+    Source/Core/KeyCodes.cpp
 )
 
 
