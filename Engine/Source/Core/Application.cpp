@@ -1,5 +1,7 @@
 #include <Aurora/Core/Application.h>
 #include <Aurora/Core/Window.h>
+#include <Aurora/Core/Time.h>
+#include <chrono>
 
 namespace Aurora
 {
@@ -19,6 +21,8 @@ namespace Aurora
         while (m_Running)
         {
             m_Window->PollEvents();
+
+            UpdateTime();
 
             if (m_Window->ShouldClose())
                 m_Running = false;
@@ -44,5 +48,25 @@ namespace Aurora
 
     void Application::Shutdown()
     {
+    }
+
+    void Application::UpdateTime()
+    {
+        using namespace std::chrono;
+
+        static auto lastTime =
+            high_resolution_clock::now();
+
+        auto currentTime =
+            high_resolution_clock::now();
+
+        float delta =
+            duration<float>(
+                currentTime - lastTime)
+                .count();
+
+        Time::s_DeltaTime = delta;
+
+        lastTime = currentTime;
     }
 }

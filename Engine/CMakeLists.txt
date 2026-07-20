@@ -8,6 +8,7 @@ target_sources(
 
     Source/Core/Application.cpp
     Source/Core/Window.cpp
+    Source/Core/Time.cpp
 )
 
 
