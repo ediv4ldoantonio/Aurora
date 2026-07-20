@@ -22,8 +22,10 @@ namespace Aurora
     {
         using namespace std::chrono;
 
-        static auto lastTime =
+        static auto startTime =
             high_resolution_clock::now();
+
+        static auto lastTime = startTime;
 
         auto currentTime =
             high_resolution_clock::now();
@@ -34,6 +36,9 @@ namespace Aurora
                 .count();
 
         Time::s_DeltaTime = delta;
+        Time::s_CurrentTime = duration<float>(
+                                  currentTime - startTime)
+                                  .count();
 
         lastTime = currentTime;
     }
