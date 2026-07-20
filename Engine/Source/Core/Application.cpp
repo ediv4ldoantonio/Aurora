@@ -2,7 +2,7 @@
 #include <Aurora/Core/Logger.h>
 #include <Aurora/Core/Window.h>
 #include <Aurora/Core/Time.h>
-#include <chrono>
+#include <Aurora/Core/Input.h>
 
 namespace Aurora
 {
@@ -23,7 +23,9 @@ namespace Aurora
 
         while (m_Running)
         {
-            UpdateTime();
+            Time::Update();
+
+            Input::Update();
 
             m_Window->PollEvents();
 
@@ -77,23 +79,4 @@ namespace Aurora
         Logger::Shutdown();
     }
 
-    void Application::UpdateTime()
-    {
-        using namespace std::chrono;
-
-        static auto lastTime =
-            high_resolution_clock::now();
-
-        auto currentTime =
-            high_resolution_clock::now();
-
-        float delta =
-            duration<float>(
-                currentTime - lastTime)
-                .count();
-
-        Time::s_DeltaTime = delta;
-
-        lastTime = currentTime;
-    }
 }

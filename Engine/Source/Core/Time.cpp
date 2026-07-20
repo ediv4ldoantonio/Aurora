@@ -1,4 +1,5 @@
 #include <Aurora/Core/Time.h>
+#include <chrono>
 
 namespace Aurora
 {
@@ -17,4 +18,23 @@ namespace Aurora
         return s_CurrentTime;
     }
 
+    void Time::Update()
+    {
+        using namespace std::chrono;
+
+        static auto lastTime =
+            high_resolution_clock::now();
+
+        auto currentTime =
+            high_resolution_clock::now();
+
+        float delta =
+            duration<float>(
+                currentTime - lastTime)
+                .count();
+
+        Time::s_DeltaTime = delta;
+
+        lastTime = currentTime;
+    }
 }

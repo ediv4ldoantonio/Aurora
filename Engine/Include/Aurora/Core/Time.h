@@ -12,6 +12,8 @@ namespace Aurora
 
         static float CurrentTime();
 
+        static void Update();
+
     private:
         static float s_DeltaTime;
 

@@ -5,12 +5,11 @@ namespace Aurora
 
     enum class Key
     {
-        Unknown = 0,
+        Unknown = -1,
 
-        Space,
-        Escape,
+        Space = 32,
 
-        A,
+        A = 65,
         B,
         C,
         D,
@@ -18,11 +17,14 @@ namespace Aurora
         W,
         S,
 
-        Up,
-        Down,
+        Escape = 256,
+
         Left,
-        Right
+        Right,
+        Up,
+        Down
     };
 
     Key KeyFromSDL(int key);
+
 }

@@ -6,6 +6,13 @@
 
 void SandboxLayer::OnUpdate(float dt)
 {
+    if (
+        Aurora::Input::IsKeyPressed(
+            Aurora::Key::Space))
+    {
+        AURORA_LOG_INFO(
+            "Jump!");
+    }
 
     if (
         Aurora::Input::IsKeyPressed(
