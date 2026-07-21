@@ -5,9 +5,11 @@
 #include <Aurora/Scene/Scene.h>
 #include <Aurora/Scene/Components/SpriteComponent.h>
 #include <Aurora/Scene/Components/TransformComponent.h>
+#include <Aurora/Scene/Components/ScriptComponent.h>
 #include <Aurora/Renderer/Camera2D.h>
 #include <Aurora/Renderer/Renderer2D.h>
 
+#include "PlayerMovement.h"
 class SandboxLayer : public Aurora::Layer
 {
 
@@ -24,6 +26,12 @@ public:
         auto &transform =
             player.AddComponent<
                 Aurora::TransformComponent>();
+
+        auto &script =
+            player.AddComponent<Aurora::ScriptComponent>();
+
+        script.Instance =
+            new PlayerMovement();
 
         transform.Position =
             {200, 200};

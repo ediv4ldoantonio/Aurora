@@ -2,6 +2,8 @@
 #include "Aurora/Renderer/Renderer2D.h"
 #include "Aurora/Scene/Components/SpriteComponent.h"
 #include "Aurora/Scene/Components/TransformComponent.h"
+#include "Aurora/Scene/Components/ScriptComponent.h"
+#include <Aurora/Core/Logger.h>
 #include "Aurora/Scene/Scene.h"
 #include "Aurora/Scene/Entity.h"
 
@@ -29,6 +31,27 @@ namespace Aurora
     void Scene::OnUpdate(
         float deltaTime)
     {
+
+        for (auto entityID : m_Entities)
+        {
+
+            Entity entity(
+                entityID,
+                this);
+
+            auto &scriptComponent =
+                entity.GetComponent<ScriptComponent>();
+
+            if (scriptComponent.Instance)
+            {
+
+                scriptComponent.Instance->SetEntity(
+                    entity);
+
+                scriptComponent.Instance->OnUpdate(
+                    deltaTime);
+            }
+        }
     }
 
     void Scene::OnRender()
@@ -52,6 +75,8 @@ namespace Aurora
                 auto &sprite =
                     entity.GetComponent<SpriteComponent>();
 
+                AURORA_LOG_INFO(transform.Position.x, transform.Position.y);
+
                 Renderer2D::DrawRectangle(
 
                     transform.Position,
@@ -62,5 +87,4 @@ namespace Aurora
             }
         }
     }
-
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Aurora/Scene/Component.h"
+#include "Aurora/Scene/Components/Component.h"
 #include "Aurora/Math/Vector2.h"
 
 namespace Aurora
