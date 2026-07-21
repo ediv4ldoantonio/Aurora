@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Aurora/Scene/Components/ScriptComponent.h"
-#include "Aurora/Core/Input.h"
+#include "Aurora/Input/Input.h"
 #include <Aurora/Core/Logger.h>
 #include "Aurora/Scene/Components/TransformComponent.h"
 

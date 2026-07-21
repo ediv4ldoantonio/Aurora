@@ -1,4 +1,4 @@
-#include "Aurora/Core/Input.h"
+#include "Aurora/Input/Input.h"
 
 #include <cstring>
 

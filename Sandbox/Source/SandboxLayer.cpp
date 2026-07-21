@@ -1,6 +1,6 @@
 #include "SandboxLayer.h"
 #include <Aurora/Core/Logger.h>
-#include <Aurora/Core/Input.h>
+#include <Aurora/Input/Input.h>
 #include <Aurora/Renderer/Renderer2D.h>
 #include <Aurora/Scene/Entity.h>
 

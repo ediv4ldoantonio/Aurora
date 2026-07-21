@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Aurora/Core/KeyCodes.h"
+#include "KeyCodes.h"
 
 namespace Aurora
 {

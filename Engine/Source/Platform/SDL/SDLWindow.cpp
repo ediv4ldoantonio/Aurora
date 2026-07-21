@@ -1,7 +1,7 @@
 #include "SDLWindow.h"
 #include "SDLGraphicsContext.h"
 
-#include <Aurora/Core/Input.h>
+#include <Aurora/Input/Input.h>
 #include <Aurora/Core/Logger.h>
 
 #include <SDL3/SDL.h>

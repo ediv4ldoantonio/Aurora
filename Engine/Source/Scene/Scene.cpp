@@ -75,8 +75,6 @@ namespace Aurora
                 auto &sprite =
                     entity.GetComponent<SpriteComponent>();
 
-                AURORA_LOG_INFO(transform.Position.x, transform.Position.y);
-
                 Renderer2D::DrawRectangle(
 
                     transform.Position,
