@@ -84,4 +84,11 @@ namespace Aurora
         Logger::Shutdown();
     }
 
+    void Application::OnEvent(
+        Event &event)
+    {
+
+        m_LayerStack.OnEvent(event);
+    }
+
 }

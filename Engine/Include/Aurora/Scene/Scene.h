@@ -10,6 +10,7 @@ namespace Aurora
     {
 
     public:
+        Scene();
         Entity CreateEntity();
 
         void OnUpdate(

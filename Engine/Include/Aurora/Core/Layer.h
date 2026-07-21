@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Aurora/Events/Event.h"
 
 namespace Aurora
 {
@@ -31,6 +32,11 @@ namespace Aurora
         }
 
         virtual void OnRender()
+        {
+        }
+
+        virtual void OnEvent(
+            Event &event)
         {
         }
 

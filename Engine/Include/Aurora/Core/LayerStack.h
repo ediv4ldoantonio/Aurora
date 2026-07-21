@@ -27,6 +27,12 @@ namespace Aurora
             return m_Layers.end();
         }
 
+        void OnUpdate(
+            float dt);
+
+        void OnEvent(
+            Event &event);
+
     private:
         std::vector<std::unique_ptr<Layer>> m_Layers;
     };

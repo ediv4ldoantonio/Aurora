@@ -22,6 +22,9 @@ namespace Aurora
                 std::move(layer));
         }
 
+        void OnEvent(
+            Event &event);
+
     private:
         void Initialize();
         void Shutdown();

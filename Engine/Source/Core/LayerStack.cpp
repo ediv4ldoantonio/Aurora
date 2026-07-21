@@ -22,4 +22,20 @@ namespace Aurora
             std::move(layer));
     }
 
+    void LayerStack::OnEvent(
+        Event &event)
+    {
+
+        for (auto it = m_Layers.rbegin();
+             it != m_Layers.rend();
+             ++it)
+        {
+
+            (*it)->OnEvent(event);
+
+            if (event.Handled)
+                break;
+        }
+    }
+
 }
