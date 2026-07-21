@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Aurora/ECS/Registry.h"
+#include "Aurora/ECS/SystemManager.h"
 
 namespace Aurora
 {
@@ -9,8 +10,6 @@ namespace Aurora
     {
 
     public:
-        Scene() = default;
-
         Entity CreateEntity();
 
         void OnUpdate(
@@ -20,6 +19,7 @@ namespace Aurora
 
     private:
         Registry m_Registry;
+        SystemManager m_SystemManager;
     };
 
 }

@@ -12,6 +12,13 @@ namespace Aurora
 {
     using EntityID = uint32_t;
 
+    Scene::Scene()
+    {
+
+        m_SystemManager
+            .AddSystem<RenderSystem>();
+    }
+
     Entity Scene::CreateEntity()
     {
 
@@ -22,34 +29,14 @@ namespace Aurora
         float deltaTime)
     {
 
-        for (auto id : m_Registry.GetEntities())
-        {
-
-            Entity entity(
-                id,
-                &m_Registry);
-
-            if (
-                entity.HasComponent<ScriptComponent>())
-            {
-
-                auto &script =
-                    entity.GetComponent<
-                        ScriptComponent>();
-
-                if (script.Instance)
-                {
-                    script.Instance->OnUpdate(
-                        deltaTime);
-                }
-            }
-        }
+        m_SystemManager.Update(
+            m_Registry,
+            deltaTime);
     }
 
     void Scene::OnRender()
     {
-
-        RenderSystem::Render(
+        m_SystemManager.Render(
             m_Registry);
     }
 }

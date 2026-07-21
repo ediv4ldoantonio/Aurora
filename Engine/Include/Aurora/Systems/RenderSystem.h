@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Aurora/ECS/Registry.h"
+#include "Aurora/ECS/System.h"
 
 namespace Aurora
 {
 
-    class RenderSystem
+    class RenderSystem : public System
     {
 
     public:
-        static void Render(
-            Registry &registry);
+        void OnRender(
+            Registry &registry) override;
     };
 
 }
