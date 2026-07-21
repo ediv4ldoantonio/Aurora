@@ -68,8 +68,10 @@ namespace Aurora
     }
 
     template <typename... Components>
-    View<Components...> Registry::ViewEntities()
+    View<Components...>
+    Registry::ViewEntities()
     {
+
         return View<Components...>(
             this);
     }

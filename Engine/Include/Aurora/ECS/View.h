@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "Aurora/Scene/Entity.h"
+
 namespace Aurora
 {
 
@@ -10,18 +12,23 @@ namespace Aurora
     {
 
     public:
-        View(
-            Registry *registry)
+        View(Registry *registry)
             : m_Registry(registry)
         {
         }
 
-        class Iterator
-        {
-        };
+        std::vector<Entity> GetEntities();
 
     private:
-        Registry *m_Registry;
+        template <typename... Required>
+        bool HasAllComponents(Entity entity)
+        {
+            return (
+                entity.HasComponent<Required>() && ...);
+        }
+
+    private:
+        Registry *m_Registry = nullptr;
     };
 
 }

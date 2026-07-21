@@ -11,10 +11,6 @@ namespace Aurora
 {
     using EntityID = uint32_t;
 
-    Scene::Scene()
-    {
-    }
-
     Entity Scene::CreateEntity()
     {
 
@@ -51,33 +47,5 @@ namespace Aurora
 
     void Scene::OnRender()
     {
-
-        for (auto entityID : m_Entities)
-        {
-
-            Entity entity(
-                entityID,
-                this);
-
-            if (
-                entity.HasComponent<TransformComponent>() &&
-                entity.HasComponent<SpriteComponent>())
-            {
-
-                auto &transform =
-                    entity.GetComponent<TransformComponent>();
-
-                auto &sprite =
-                    entity.GetComponent<SpriteComponent>();
-
-                Renderer2D::DrawRectangle(
-
-                    transform.Position,
-
-                    sprite.Size
-
-                );
-            }
-        }
     }
 }

@@ -54,3 +54,5 @@ namespace Aurora
 }
 
 #include "Aurora/ECS/Registry.inl"
+#include "Aurora/Scene/Entity.inl"
+#include "Aurora/ECS/View.inl"

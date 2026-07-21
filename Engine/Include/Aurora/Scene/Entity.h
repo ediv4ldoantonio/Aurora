@@ -43,5 +43,3 @@ namespace Aurora
     };
 
 }
-
-#include "Aurora/Scene/Entity.inl"
