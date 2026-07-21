@@ -2,14 +2,19 @@
 
 #include "Aurora/Math/Vector2.h"
 
+#include <memory>
+
 namespace Aurora
 {
-    class GraphicsContext;
+
+    class RendererAPI;
 
     class Renderer2D
     {
+
     public:
-        static void Init(GraphicsContext &graphicsContext);
+        static void Init(
+            RendererAPI *renderer);
 
         static void Shutdown();
 
@@ -20,6 +25,9 @@ namespace Aurora
         static void DrawRectangle(
             const Vector2 &position,
             const Vector2 &size);
+
+    private:
+        static RendererAPI *s_Renderer;
     };
 
 }

@@ -1,66 +1,42 @@
 #include "Aurora/Renderer/Renderer2D.h"
-#include "Aurora/Renderer/GraphicsContext.h"
-
-#include "Renderer2DData.h"
-
-#include <SDL3/SDL.h>
+#include "Aurora/Renderer/RendererAPI.h"
 
 namespace Aurora
 {
 
-    static Renderer2DData s_Data;
+    RendererAPI *
+        Renderer2D::s_Renderer = nullptr;
 
-    void Renderer2D::Init(GraphicsContext &graphicsContext)
+    void Renderer2D::Init(
+        RendererAPI *renderer)
     {
-        s_Data.Renderer =
-            static_cast<SDL_Renderer *>(graphicsContext.GetNativeRenderer());
+        s_Renderer = renderer;
+
+        s_Renderer->Init();
     }
 
     void Renderer2D::Shutdown()
     {
-        s_Data.Renderer = nullptr;
+        s_Renderer = nullptr;
     }
 
     void Renderer2D::BeginFrame()
     {
-        SDL_SetRenderDrawColor(
-            s_Data.Renderer,
-            30,
-            30,
-            30,
-            255);
-
-        SDL_RenderClear(
-            s_Data.Renderer);
+        s_Renderer->BeginFrame();
     }
 
     void Renderer2D::EndFrame()
     {
-        SDL_RenderPresent(
-            s_Data.Renderer);
+        s_Renderer->EndFrame();
     }
 
     void Renderer2D::DrawRectangle(
         const Vector2 &position,
         const Vector2 &size)
     {
-        SDL_FRect rect;
-
-        rect.x = position.x;
-        rect.y = position.y;
-
-        rect.w = size.x;
-        rect.h = size.y;
-
-        SDL_SetRenderDrawColor(
-            s_Data.Renderer,
-            255,
-            255,
-            255,
-            255);
-
-        SDL_RenderFillRect(
-            s_Data.Renderer,
-            &rect);
+        s_Renderer->DrawRectangle(
+            position,
+            size);
     }
+
 }

@@ -36,17 +36,17 @@ namespace Aurora
                 m_Running = false;
             }
 
-            // Update game layers
-            for (auto &layer : m_LayerStack)
-            {
-                layer->OnUpdate(Time::DeltaTime());
-            }
+            Renderer2D::BeginFrame();
 
-            // Render layers
             for (auto &layer : m_LayerStack)
             {
+                layer->OnUpdate(
+                    Time::DeltaTime());
+
                 layer->OnRender();
             }
+
+            Renderer2D::EndFrame();
         }
 
         AURORA_LOG_INFO("Application loop exited");
@@ -73,7 +73,9 @@ namespace Aurora
         AURORA_LOG_INFO("Created window: ", spec.Title, " (", spec.Width, "x", spec.Height, ")");
 
         Renderer2D::Init(
-            m_Window->GetGraphicsContext());
+            m_Window
+                ->GetGraphicsContext()
+                .GetRendererAPI());
     }
 
     void Application::Shutdown()

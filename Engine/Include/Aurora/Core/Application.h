@@ -25,7 +25,6 @@ namespace Aurora
     private:
         void Initialize();
         void Shutdown();
-        void UpdateTime();
 
     private:
         std::unique_ptr<Window> m_Window;

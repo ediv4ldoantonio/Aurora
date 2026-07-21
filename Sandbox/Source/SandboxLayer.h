@@ -13,6 +13,7 @@ public:
     }
 
     void OnUpdate(float dt) override;
+    void OnRender() override;
 
 private:
     Aurora::Entity m_Player;

@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 
+#include "Aurora/Renderer/GraphicsContext.h"
+
 namespace Aurora
 {
     struct WindowSpecification

@@ -1,36 +1,52 @@
-#include "Aurora/Renderer/SDLGraphicsContext.h"
-
+#include "SDLGraphicsContext.h"
+#include "SDLRendererAPI.h"
 #include <SDL3/SDL.h>
+#include <Aurora/Core/Logger.h>
 
 namespace Aurora
 {
-    SDLGraphicsContext::SDLGraphicsContext(SDL_Window *window)
+
+    SDLGraphicsContext::SDLGraphicsContext(
+        SDL_Window *window)
         : m_Window(window)
     {
     }
 
-    SDLGraphicsContext::~SDLGraphicsContext() = default;
+    SDLGraphicsContext::~SDLGraphicsContext()
+    {
+
+        m_RendererAPI.reset();
+
+        if (m_Renderer)
+        {
+            SDL_DestroyRenderer(
+                m_Renderer);
+        }
+    }
 
     void SDLGraphicsContext::Init()
     {
-        m_Renderer = SDL_CreateRenderer(m_Window, nullptr);
+
+        m_Renderer =
+            SDL_CreateRenderer(
+                m_Window,
+                nullptr);
+
+        if (!m_Renderer)
+        {
+            AURORA_LOG_ERROR("Error creating Renderer");
+        }
+
+        m_RendererAPI =
+            std::make_unique<SDLRendererAPI>(
+                m_Renderer);
+
+        m_RendererAPI->Init();
     }
 
-    void SDLGraphicsContext::BeginFrame()
+    RendererAPI *
+    SDLGraphicsContext::GetRendererAPI()
     {
-    }
-
-    void SDLGraphicsContext::EndFrame()
-    {
-    }
-
-    void *SDLGraphicsContext::GetNativeRenderer() const
-    {
-        return m_Renderer;
-    }
-
-    SDL_Renderer *SDLGraphicsContext::GetRenderer() const
-    {
-        return m_Renderer;
+        return m_RendererAPI.get();
     }
 }

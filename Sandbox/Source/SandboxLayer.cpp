@@ -1,6 +1,7 @@
 #include "SandboxLayer.h"
 #include <Aurora/Core/Logger.h>
 #include <Aurora/Core/Input.h>
+#include <Aurora/Renderer/Renderer2D.h>
 
 #include <iostream>
 
@@ -39,9 +40,17 @@ void SandboxLayer::OnUpdate(float dt)
     {
         position.y -= speed * dt;
     }
+}
 
-    AURORA_LOG_INFO(
-        "Player Position: {}, {}",
-        position.x,
-        position.y);
+void SandboxLayer::OnRender()
+{
+
+    auto position =
+        m_Player
+            .GetTransform()
+            .Position;
+
+    Aurora::Renderer2D::DrawRectangle(
+        position,
+        {50, 50});
 }

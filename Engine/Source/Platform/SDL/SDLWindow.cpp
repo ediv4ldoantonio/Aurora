@@ -18,7 +18,7 @@ namespace Aurora
             m_Specification.Title.c_str(),
             m_Specification.Width,
             m_Specification.Height,
-            0);
+            SDL_WINDOW_RESIZABLE);
 
         if (m_Window)
         {
