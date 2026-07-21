@@ -1,9 +1,15 @@
 #pragma once
 
 #include <string>
+#include <memory>
+
+struct SDL_Window;
+struct SDL_Renderer;
 
 namespace Aurora
 {
+    class GraphicsContext;
+
     struct WindowSpecification
     {
         std::string Title = "Aurora";
@@ -21,11 +27,13 @@ namespace Aurora
 
         bool ShouldClose() const;
 
+        GraphicsContext &GetGraphicsContext();
+
     private:
+        struct WindowData;
         WindowSpecification m_Specification;
 
-        struct WindowData;
-
-        WindowData *m_Data = nullptr;
+        std::unique_ptr<WindowData> m_Data;
+        std::unique_ptr<GraphicsContext> m_GraphicsContext;
     };
 }

@@ -3,6 +3,7 @@
 #include <Aurora/Core/Window.h>
 #include <Aurora/Core/Time.h>
 #include <Aurora/Core/Input.h>
+#include <Aurora/Renderer/Renderer2D.h>
 
 namespace Aurora
 {
@@ -71,6 +72,9 @@ namespace Aurora
                 spec);
 
         AURORA_LOG_INFO("Created window: ", spec.Title, " (", spec.Width, "x", spec.Height, ")");
+
+        Renderer2D::Init(
+            m_Window->GetGraphicsContext());
     }
 
     void Application::Shutdown()
