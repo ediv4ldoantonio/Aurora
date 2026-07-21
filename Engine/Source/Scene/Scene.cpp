@@ -6,6 +6,7 @@
 #include <Aurora/Core/Logger.h>
 #include "Aurora/Scene/Scene.h"
 #include "Aurora/Scene/Entity.h"
+#include "Aurora/Systems/RenderSystem.h"
 
 namespace Aurora
 {
@@ -47,5 +48,8 @@ namespace Aurora
 
     void Scene::OnRender()
     {
+
+        RenderSystem::Render(
+            m_Registry);
     }
 }
