@@ -2,31 +2,44 @@
 
 #include <memory>
 #include <string>
+#include <functional>
 
 #include "Aurora/Renderer/GraphicsContext.h"
+#include "Aurora/Events/Event.h"
 
 namespace Aurora
 {
+    using EventCallbackFn =
+        std::function<void(Event &)>;
     struct WindowSpecification
     {
-        std::string Title = "Aurora";
-        int Width = 1280;
-        int Height = 720;
+
+        std::string Title;
+
+        unsigned int Width;
+        unsigned int Height;
+
+        EventCallbackFn EventCallback;
     };
 
     class GraphicsContext;
 
     class Window
     {
+
     public:
-        virtual ~Window() = default;
+        virtual ~Window();
 
-        virtual void PollEvents() = 0;
-
-        virtual bool ShouldClose() const = 0;
+        virtual void OnUpdate() = 0;
 
         virtual GraphicsContext &GetGraphicsContext() = 0;
 
         static std::unique_ptr<Window> Create(const WindowSpecification &specification = WindowSpecification{});
+
+        virtual void SetEventCallback(
+            const EventCallbackFn &callback) = 0;
+
+    private:
+        WindowSpecification m_Data;
     };
 }

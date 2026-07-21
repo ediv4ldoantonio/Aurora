@@ -10,6 +10,7 @@
 #include <Aurora/Renderer/Renderer2D.h>
 
 #include "PlayerMovement.h"
+
 class SandboxLayer : public Aurora::Layer
 {
 
@@ -42,6 +43,8 @@ public:
 
     void OnUpdate(float dt) override;
     void OnRender() override;
+    void OnEvent(
+        Aurora::Event &event) override;
 
 private:
     Aurora::Entity m_Player;

@@ -4,6 +4,8 @@
 #include <Aurora/Core/Time.h>
 #include <Aurora/Input/Input.h>
 #include <Aurora/Renderer/Renderer2D.h>
+#include <Aurora/Events/ApplicationEvents.h>
+#include <Aurora/Events/EventDispatcher.h>
 
 namespace Aurora
 {
@@ -28,13 +30,7 @@ namespace Aurora
 
             Input::Update();
 
-            m_Window->PollEvents();
-
-            if (m_Window->ShouldClose())
-            {
-                AURORA_LOG_INFO("Closing application because the window requested shutdown");
-                m_Running = false;
-            }
+            m_Window->OnUpdate();
 
             Renderer2D::BeginFrame();
 
@@ -70,6 +66,12 @@ namespace Aurora
         m_Window =
             Window::Create(spec);
 
+        m_Window->SetEventCallback(
+            [this](Event &event)
+            {
+                OnEvent(event);
+            });
+
         AURORA_LOG_INFO("Created window: ", spec.Title, " (", spec.Width, "x", spec.Height, ")");
 
         Renderer2D::Init(
@@ -87,6 +89,18 @@ namespace Aurora
     void Application::OnEvent(
         Event &event)
     {
+
+        EventDispatcher dispatcher(event);
+
+        dispatcher.Dispatch<WindowCloseEvent>(
+            [this](WindowCloseEvent &)
+            {
+                m_Running = false;
+
+                AURORA_LOG_INFO("Closing application because the window requested shutdown");
+
+                return true;
+            });
 
         m_LayerStack.OnEvent(event);
     }

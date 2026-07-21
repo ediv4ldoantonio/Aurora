@@ -1,5 +1,6 @@
 #include "SDLWindow.h"
 #include "SDLGraphicsContext.h"
+#include "Aurora/Events/ApplicationEvents.h"
 
 #include <Aurora/Input/Input.h>
 #include <Aurora/Core/Logger.h>
@@ -69,8 +70,14 @@ namespace Aurora
         SDL_Quit();
     }
 
-    void SDLWindow::PollEvents()
+    GraphicsContext &SDLWindow::GetGraphicsContext()
     {
+        return *m_Context;
+    }
+
+    void SDLWindow::OnUpdate()
+    {
+
         SDL_Event event;
 
         while (SDL_PollEvent(&event))
@@ -79,35 +86,17 @@ namespace Aurora
             {
             case SDL_EVENT_QUIT:
             {
-                m_ShouldClose = true;
-                AURORA_LOG_INFO("Window quit event received");
-                break;
-            }
+                WindowCloseEvent e;
 
-            case SDL_EVENT_KEY_DOWN:
-            {
-                auto key = TranslateKeyCode(event.key.key);
-                Input::SetKey(key, true);
-                break;
-            }
-
-            case SDL_EVENT_KEY_UP:
-            {
-                auto key = TranslateKeyCode(event.key.key);
-                Input::SetKey(key, false);
-                break;
+                m_Specification.EventCallback(e);
             }
             }
         }
     }
 
-    bool SDLWindow::ShouldClose() const
+    void SDLWindow::SetEventCallback(
+        const EventCallbackFn &callback)
     {
-        return m_ShouldClose;
-    }
-
-    GraphicsContext &SDLWindow::GetGraphicsContext()
-    {
-        return *m_Context;
+        m_Specification.EventCallback = callback;
     }
 }

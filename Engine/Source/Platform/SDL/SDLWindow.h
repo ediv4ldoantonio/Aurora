@@ -17,9 +17,10 @@ namespace Aurora
 
         ~SDLWindow() override;
 
-        void PollEvents() override;
+        void OnUpdate() override;
 
-        bool ShouldClose() const override;
+        void SetEventCallback(
+            const EventCallbackFn &callback) override;
 
         GraphicsContext &GetGraphicsContext() override;
 
