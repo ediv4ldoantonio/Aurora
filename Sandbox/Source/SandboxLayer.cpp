@@ -20,5 +20,4 @@ void SandboxLayer::OnRender()
 void SandboxLayer::OnEvent(
     Aurora::Event &event)
 {
-    AURORA_LOG_INFO(event.GetName());
 }

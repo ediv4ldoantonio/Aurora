@@ -4,32 +4,10 @@
 
 #include <Aurora/Input/Input.h>
 #include <Aurora/Core/Logger.h>
+#include "Aurora/Events/KeyEvents.h"
+#include "SDLKeyCodes.h"
 
 #include <SDL3/SDL.h>
-
-namespace
-{
-    Aurora::Key TranslateKeyCode(int sdlKey)
-    {
-        switch (sdlKey)
-        {
-        case SDLK_W:
-            return Aurora::Key::W;
-        case SDLK_A:
-            return Aurora::Key::A;
-        case SDLK_S:
-            return Aurora::Key::S;
-        case SDLK_D:
-            return Aurora::Key::D;
-        case SDLK_SPACE:
-            return Aurora::Key::Space;
-        case SDLK_ESCAPE:
-            return Aurora::Key::Escape;
-        default:
-            return Aurora::Key::Unknown;
-        }
-    }
-}
 
 namespace Aurora
 {
@@ -78,17 +56,44 @@ namespace Aurora
     void SDLWindow::OnUpdate()
     {
 
-        SDL_Event event;
+        SDL_Event sdlEvent;
 
-        while (SDL_PollEvent(&event))
+        while (SDL_PollEvent(&sdlEvent))
         {
-            switch (event.type)
+            switch (sdlEvent.type)
             {
             case SDL_EVENT_QUIT:
             {
                 WindowCloseEvent e;
 
                 m_Specification.EventCallback(e);
+            }
+
+            case SDL_EVENT_KEY_DOWN:
+            {
+                AURORA_LOG_INFO(SDLKeyToAurora(
+                    sdlEvent.key.key));
+                KeyPressedEvent keyEvent(
+                    SDLKeyToAurora(
+                        sdlEvent.key.key));
+
+                m_Specification.EventCallback(
+                    keyEvent);
+
+                break;
+            }
+
+            case SDL_EVENT_KEY_UP:
+            {
+
+                KeyPressedEvent keyEvent(
+                    SDLKeyToAurora(
+                        sdlEvent.key.key));
+
+                m_Specification.EventCallback(
+                    keyEvent);
+
+                break;
             }
             }
         }

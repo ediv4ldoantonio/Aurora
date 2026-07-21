@@ -18,10 +18,14 @@ public:
 
         if (
             Aurora::Input::IsKeyPressed(
-                Aurora::Key::D))
+                Aurora::Key::D) ||
+            Aurora::Input::IsKeyPressed(
+                Aurora::Key::A))
         {
             transform.Position.x +=
                 500.0f * dt;
+
+            AURORA_LOG_INFO(transform.Position.x);
         }
     }
 };

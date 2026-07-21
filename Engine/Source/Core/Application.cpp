@@ -89,6 +89,7 @@ namespace Aurora
     void Application::OnEvent(
         Event &event)
     {
+        Input::ProcessEvent(event);
 
         EventDispatcher dispatcher(event);
 

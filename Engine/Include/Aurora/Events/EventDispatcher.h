@@ -16,19 +16,12 @@ namespace Aurora
         }
 
         template <typename T, typename F>
-        bool Dispatch(
-            const F &function)
+        bool Dispatch(const F &func)
         {
-
-            if (
-                m_Event.GetEventType() ==
-                T().GetEventType())
+            if (m_Event.GetEventType() == T::GetStaticType())
             {
-
                 m_Event.Handled =
-                    function(
-                        static_cast<T &>(
-                            m_Event));
+                    func(static_cast<T &>(m_Event));
 
                 return true;
             }

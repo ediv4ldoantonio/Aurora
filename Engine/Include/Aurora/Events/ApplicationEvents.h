@@ -9,15 +9,9 @@ namespace Aurora
     {
 
     public:
-        EventType GetEventType() const override
-        {
-            return EventType::WindowClose;
-        }
-
-        const char *GetName() const override
-        {
-            return "WindowClose";
-        }
+        EVENT_CLASS_TYPE(WindowClose)
+        EVENT_CLASS_CATEGORY(
+            EventCategoryApplication)
     };
 
     class WindowResizeEvent : public Event
@@ -35,15 +29,9 @@ namespace Aurora
         unsigned int Width;
         unsigned int Height;
 
-        EventType GetEventType() const override
-        {
-            return EventType::WindowResize;
-        }
-
-        const char *GetName() const override
-        {
-            return "WindowResize";
-        }
+        EVENT_CLASS_TYPE(WindowResize)
+        EVENT_CLASS_CATEGORY(
+            EventCategoryApplication)
     };
 
 }
