@@ -5,9 +5,9 @@ namespace Aurora
 
     Entity::Entity(
         EntityID id,
-        Scene *scene)
+        Registry *registry)
         : m_ID(id),
-          m_Scene(scene)
+          m_Registry(registry)
     {
     }
 
@@ -18,7 +18,7 @@ namespace Aurora
 
     bool Entity::IsValid() const
     {
-        return m_Scene != nullptr;
+        return m_Registry != nullptr;
     }
 
 }

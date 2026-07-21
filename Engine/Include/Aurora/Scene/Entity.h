@@ -7,7 +7,7 @@ namespace Aurora
 
     using EntityID = uint32_t;
 
-    class Scene;
+    class Registry;
 
     class Entity
     {
@@ -17,7 +17,7 @@ namespace Aurora
 
         Entity(
             EntityID id,
-            Scene *scene);
+            Registry *registry);
 
         EntityID GetID() const;
 
@@ -36,7 +36,7 @@ namespace Aurora
     private:
         EntityID m_ID = 0;
 
-        Scene *m_Scene = nullptr;
+        Registry *m_Registry = nullptr;
     };
 
 }

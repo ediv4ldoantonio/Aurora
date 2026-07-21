@@ -10,7 +10,7 @@ namespace Aurora
         Args &&...args)
     {
 
-        return m_Scene->template AddComponent<T>(
+        return m_Registry->template AddComponent<T>(
             m_ID,
             std::forward<Args>(args)...);
     }
@@ -19,7 +19,7 @@ namespace Aurora
     T &Entity::GetComponent()
     {
 
-        return m_Scene->template GetComponent<T>(
+        return m_Registry->template GetComponent<T>(
             m_ID);
     }
 
@@ -27,7 +27,7 @@ namespace Aurora
     bool Entity::HasComponent()
     {
 
-        return m_Scene->template HasComponent<T>(
+        return m_Registry->template HasComponent<T>(
             m_ID);
     }
 
