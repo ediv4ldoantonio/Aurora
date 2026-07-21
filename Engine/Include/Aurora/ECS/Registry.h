@@ -3,7 +3,9 @@
 #include <unordered_map>
 #include <memory>
 #include <typeindex>
+#include <vector>
 
+#include "Aurora/Scene/Entity.h"
 #include "Aurora/ECS/ComponentPool.h"
 
 namespace Aurora
@@ -28,6 +30,8 @@ namespace Aurora
         bool HasComponent(
             EntityID entity);
 
+        const std::vector<EntityID> &GetEntities() const;
+
     private:
         template <typename T>
         ComponentPool<T> &GetPool();
@@ -44,3 +48,5 @@ namespace Aurora
     };
 
 }
+
+#include "Aurora/ECS/Registry.inl"

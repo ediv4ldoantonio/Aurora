@@ -2,6 +2,8 @@
 
 #include <utility>
 
+#include "Aurora/ECS/Registry.h"
+
 namespace Aurora
 {
 

@@ -11,11 +11,6 @@ namespace Aurora
     {
     }
 
-    EntityID Entity::GetID() const
-    {
-        return m_ID;
-    }
-
     bool Entity::IsValid() const
     {
         return m_Registry != nullptr;

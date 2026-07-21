@@ -19,7 +19,10 @@ namespace Aurora
             EntityID id,
             Registry *registry);
 
-        EntityID GetID() const;
+        EntityID GetID() const
+        {
+            return m_ID;
+        }
 
         bool IsValid() const;
 
@@ -40,3 +43,5 @@ namespace Aurora
     };
 
 }
+
+#include "Aurora/Scene/Entity.inl"

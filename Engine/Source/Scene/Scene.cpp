@@ -18,38 +18,33 @@ namespace Aurora
     Entity Scene::CreateEntity()
     {
 
-        EntityID id =
-            m_NextEntityID++;
-
-        m_Entities.push_back(id);
-
-        return Entity(
-            id,
-            this);
+        return m_Registry.CreateEntity();
     }
 
     void Scene::OnUpdate(
         float deltaTime)
     {
 
-        for (auto entityID : m_Entities)
+        for (auto id : m_Registry.GetEntities())
         {
 
             Entity entity(
-                entityID,
-                this);
+                id,
+                &m_Registry);
 
-            auto &scriptComponent =
-                entity.GetComponent<ScriptComponent>();
-
-            if (scriptComponent.Instance)
+            if (
+                entity.HasComponent<ScriptComponent>())
             {
 
-                scriptComponent.Instance->SetEntity(
-                    entity);
+                auto &script =
+                    entity.GetComponent<
+                        ScriptComponent>();
 
-                scriptComponent.Instance->OnUpdate(
-                    deltaTime);
+                if (script.Instance)
+                {
+                    script.Instance->OnUpdate(
+                        deltaTime);
+                }
             }
         }
     }
