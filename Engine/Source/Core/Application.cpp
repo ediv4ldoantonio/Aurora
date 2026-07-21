@@ -68,8 +68,7 @@ namespace Aurora
         spec.Height = 720;
 
         m_Window =
-            std::make_unique<Window>(
-                spec);
+            Window::Create(spec);
 
         AURORA_LOG_INFO("Created window: ", spec.Title, " (", spec.Width, "x", spec.Height, ")");
 

@@ -1,15 +1,10 @@
 #pragma once
 
-#include <string>
 #include <memory>
-
-struct SDL_Window;
-struct SDL_Renderer;
+#include <string>
 
 namespace Aurora
 {
-    class GraphicsContext;
-
     struct WindowSpecification
     {
         std::string Title = "Aurora";
@@ -17,23 +12,19 @@ namespace Aurora
         int Height = 720;
     };
 
+    class GraphicsContext;
+
     class Window
     {
     public:
-        explicit Window(const WindowSpecification &specification);
-        ~Window();
+        virtual ~Window() = default;
 
-        void PollEvents();
+        virtual void PollEvents() = 0;
 
-        bool ShouldClose() const;
+        virtual bool ShouldClose() const = 0;
 
-        GraphicsContext &GetGraphicsContext();
+        virtual GraphicsContext &GetGraphicsContext() = 0;
 
-    private:
-        struct WindowData;
-        WindowSpecification m_Specification;
-
-        std::unique_ptr<WindowData> m_Data;
-        std::unique_ptr<GraphicsContext> m_GraphicsContext;
+        static std::unique_ptr<Window> Create(const WindowSpecification &specification = WindowSpecification{});
     };
 }

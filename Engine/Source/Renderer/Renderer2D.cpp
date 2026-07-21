@@ -1,4 +1,5 @@
 #include "Aurora/Renderer/Renderer2D.h"
+#include "Aurora/Renderer/GraphicsContext.h"
 
 #include "Renderer2DData.h"
 
@@ -9,10 +10,10 @@ namespace Aurora
 
     static Renderer2DData s_Data;
 
-    void Renderer2D::Init(void *nativeRenderer)
+    void Renderer2D::Init(GraphicsContext &graphicsContext)
     {
         s_Data.Renderer =
-            static_cast<SDL_Renderer *>(nativeRenderer);
+            static_cast<SDL_Renderer *>(graphicsContext.GetNativeRenderer());
     }
 
     void Renderer2D::Shutdown()

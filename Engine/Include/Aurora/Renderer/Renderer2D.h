@@ -4,11 +4,12 @@
 
 namespace Aurora
 {
+    class GraphicsContext;
 
     class Renderer2D
     {
     public:
-        static void Init(void *nativeRenderer);
+        static void Init(GraphicsContext &graphicsContext);
 
         static void Shutdown();
 

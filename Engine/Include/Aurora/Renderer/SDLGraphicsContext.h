@@ -23,6 +23,8 @@ namespace Aurora
 
         void EndFrame() override;
 
+        void *GetNativeRenderer() const override;
+
         SDL_Renderer *GetRenderer() const;
 
     private:
