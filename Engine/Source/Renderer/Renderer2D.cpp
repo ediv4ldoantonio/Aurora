@@ -7,6 +7,9 @@ namespace Aurora
     RendererAPI *
         Renderer2D::s_Renderer = nullptr;
 
+    Camera2D *
+        Renderer2D::s_Camera = nullptr;
+
     void Renderer2D::Init(
         RendererAPI *renderer)
     {
@@ -34,9 +37,25 @@ namespace Aurora
         const Vector2 &position,
         const Vector2 &size)
     {
+
+        Vector2 screenPosition =
+            position;
+
+        if (s_Camera)
+        {
+            screenPosition =
+                s_Camera->WorldToScreen(
+                    position);
+        }
+
         s_Renderer->DrawRectangle(
-            position,
+            screenPosition,
             size);
     }
 
+    void Renderer2D::SetCamera(
+        Camera2D *camera)
+    {
+        s_Camera = camera;
+    }
 }

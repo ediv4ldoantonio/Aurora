@@ -9,7 +9,9 @@ void SandboxLayer::OnUpdate(float dt)
 {
 
     auto &position =
-        m_Player.GetTransform().Position;
+        m_Player.GetTransform()
+            .Position =
+            {500, 300};
 
     float speed = 200.0f;
 
@@ -40,6 +42,11 @@ void SandboxLayer::OnUpdate(float dt)
     {
         position.y -= speed * dt;
     }
+
+    m_Camera.SetPosition(
+        m_Player
+            .GetTransform()
+            .Position);
 }
 
 void SandboxLayer::OnRender()

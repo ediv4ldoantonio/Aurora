@@ -1,6 +1,6 @@
 #include "Aurora/Core/Window.h"
 #include "Aurora/Renderer/GraphicsContext.h"
-#include "Aurora/Renderer/SDLGraphicsContext.h"
+#include "SDLGraphicsContext.h"
 #include "SDLWindow.h"
 
 namespace Aurora

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Aurora/Math/Vector2.h"
+#include "Aurora/Renderer/Camera2D.h"
 
 #include <memory>
 
@@ -26,8 +27,12 @@ namespace Aurora
             const Vector2 &position,
             const Vector2 &size);
 
+        static void SetCamera(
+            Camera2D *camera);
+
     private:
         static RendererAPI *s_Renderer;
+        static Camera2D *s_Camera;
     };
 
 }
