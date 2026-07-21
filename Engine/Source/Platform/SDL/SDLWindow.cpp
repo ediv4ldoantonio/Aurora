@@ -6,6 +6,30 @@
 
 #include <SDL3/SDL.h>
 
+namespace
+{
+    Aurora::Key TranslateKeyCode(int sdlKey)
+    {
+        switch (sdlKey)
+        {
+        case SDLK_W:
+            return Aurora::Key::W;
+        case SDLK_A:
+            return Aurora::Key::A;
+        case SDLK_S:
+            return Aurora::Key::S;
+        case SDLK_D:
+            return Aurora::Key::D;
+        case SDLK_SPACE:
+            return Aurora::Key::Space;
+        case SDLK_ESCAPE:
+            return Aurora::Key::Escape;
+        default:
+            return Aurora::Key::Unknown;
+        }
+    }
+}
+
 namespace Aurora
 {
     SDLWindow::SDLWindow(const WindowSpecification &specification)
@@ -62,14 +86,14 @@ namespace Aurora
 
             case SDL_EVENT_KEY_DOWN:
             {
-                auto key = KeyFromSDL(event.key.key);
+                auto key = TranslateKeyCode(event.key.key);
                 Input::SetKey(key, true);
                 break;
             }
 
             case SDL_EVENT_KEY_UP:
             {
-                auto key = KeyFromSDL(event.key.key);
+                auto key = TranslateKeyCode(event.key.key);
                 Input::SetKey(key, false);
                 break;
             }

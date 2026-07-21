@@ -1,0 +1,19 @@
+#pragma once
+
+#include "Aurora/Scene/Component.h"
+#include "Aurora/Math/Vector2.h"
+
+namespace Aurora
+{
+
+    struct TransformComponent : public Component
+    {
+
+        Vector2 Position{0, 0};
+
+        Vector2 Scale{1, 1};
+
+        float Rotation = 0.0f;
+    };
+
+}

@@ -2,6 +2,9 @@
 
 #include <Aurora/Core/Layer.h>
 #include <Aurora/Scene/Entity.h>
+#include <Aurora/Scene/Scene.h>
+#include <Aurora/Scene/Components/SpriteComponent.h>
+#include <Aurora/Scene/Components/TransformComponent.h>
 #include <Aurora/Renderer/Camera2D.h>
 #include <Aurora/Renderer/Renderer2D.h>
 
@@ -14,6 +17,16 @@ public:
     {
         Aurora::Renderer2D::SetCamera(
             &m_Camera);
+
+        m_Scene =
+            std::make_shared<Aurora::Scene>();
+
+        auto player =
+            m_Scene->CreateEntity();
+
+        player.AddComponent<Aurora::TransformComponent>();
+
+        player.AddComponent<Aurora::SpriteComponent>();
     }
 
     void OnUpdate(float dt) override;
@@ -22,4 +35,5 @@ public:
 private:
     Aurora::Entity m_Player;
     Aurora::Camera2D m_Camera;
+    std::shared_ptr<Aurora::Scene> m_Scene;
 };

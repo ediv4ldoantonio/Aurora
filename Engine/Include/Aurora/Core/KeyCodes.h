@@ -2,7 +2,6 @@
 
 namespace Aurora
 {
-
     enum class Key
     {
         Unknown = -1,
@@ -24,7 +23,4 @@ namespace Aurora
         Up,
         Down
     };
-
-    Key KeyFromSDL(int key);
-
 }
