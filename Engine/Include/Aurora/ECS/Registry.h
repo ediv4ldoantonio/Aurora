@@ -7,6 +7,7 @@
 
 #include "Aurora/Scene/Entity.h"
 #include "Aurora/ECS/ComponentPool.h"
+#include "Aurora/ECS/View.h"
 
 namespace Aurora
 {
@@ -29,6 +30,9 @@ namespace Aurora
         template <typename T>
         bool HasComponent(
             EntityID entity);
+
+        template <typename... Components>
+        View<Components...> ViewEntities();
 
         const std::vector<EntityID> &GetEntities() const;
 

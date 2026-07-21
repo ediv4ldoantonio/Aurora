@@ -69,4 +69,11 @@ namespace Aurora
         return pool.Has(entity);
     }
 
+    template <typename... Components>
+    View<Components...> Registry::ViewEntities()
+    {
+        return View<Components...>(
+            this);
+    }
+
 }

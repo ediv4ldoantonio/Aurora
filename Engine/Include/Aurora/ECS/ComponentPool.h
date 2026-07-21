@@ -24,6 +24,8 @@ namespace Aurora
             Args &&...args)
         {
 
+            m_Entities.push_back(entity);
+
             auto [iterator, inserted] =
                 m_Data.emplace(
                     entity,
@@ -48,6 +50,8 @@ namespace Aurora
 
     private:
         std::unordered_map<EntityID, T> m_Data;
+
+        std::vector<EntityID> m_Entities;
     };
 
 }
