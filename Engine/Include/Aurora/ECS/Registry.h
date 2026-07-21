@@ -2,11 +2,11 @@
 
 #include <unordered_map>
 #include <memory>
-#include <typeindex>
 #include <vector>
 
 #include "Aurora/Scene/Entity.h"
 #include "Aurora/ECS/ComponentPool.h"
+#include "Aurora/ECS/Component.h"
 #include "Aurora/ECS/View.h"
 
 namespace Aurora
@@ -46,7 +46,7 @@ namespace Aurora
         std::vector<EntityID> m_Entities;
 
         std::unordered_map<
-            std::type_index,
+            ComponentType,
             std::unique_ptr<IComponentPool>>
             m_ComponentPools;
     };

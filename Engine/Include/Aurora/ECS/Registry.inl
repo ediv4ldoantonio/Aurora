@@ -6,10 +6,8 @@ namespace Aurora
     template <typename T>
     ComponentPool<T> &Registry::GetPool()
     {
-
         auto type =
-            std::type_index(
-                typeid(T));
+            GetComponentTypeID<T>();
 
         auto iterator =
             m_ComponentPools.find(type);
