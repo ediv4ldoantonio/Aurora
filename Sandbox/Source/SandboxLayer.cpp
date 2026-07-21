@@ -8,8 +8,10 @@
 
 void SandboxLayer::OnUpdate(float dt)
 {
+    m_Scene->OnUpdate(dt);
 }
 
 void SandboxLayer::OnRender()
 {
+    m_Scene->OnRender();
 }

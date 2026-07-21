@@ -15,18 +15,21 @@ public:
     SandboxLayer()
         : Layer("Sandbox")
     {
-        Aurora::Renderer2D::SetCamera(
-            &m_Camera);
-
         m_Scene =
             std::make_shared<Aurora::Scene>();
 
         auto player =
             m_Scene->CreateEntity();
 
-        player.AddComponent<Aurora::TransformComponent>();
+        auto &transform =
+            player.AddComponent<
+                Aurora::TransformComponent>();
 
-        player.AddComponent<Aurora::SpriteComponent>();
+        transform.Position =
+            {200, 200};
+
+        player.AddComponent<
+            Aurora::SpriteComponent>();
     }
 
     void OnUpdate(float dt) override;

@@ -1,7 +1,13 @@
 #include "Aurora/Scene/Scene.h"
+#include "Aurora/Renderer/Renderer2D.h"
+#include "Aurora/Scene/Components/SpriteComponent.h"
+#include "Aurora/Scene/Components/TransformComponent.h"
+#include "Aurora/Scene/Scene.h"
+#include "Aurora/Scene/Entity.h"
 
 namespace Aurora
 {
+    using EntityID = uint32_t;
 
     Scene::Scene()
     {
@@ -10,16 +16,51 @@ namespace Aurora
     Entity Scene::CreateEntity()
     {
 
-        Entity entity(
-            m_NextEntityID++,
-            this);
+        EntityID id =
+            m_NextEntityID++;
 
-        return entity;
+        m_Entities.push_back(id);
+
+        return Entity(
+            id,
+            this);
     }
 
-    void Scene::DestroyEntity(
-        Entity entity)
+    void Scene::OnUpdate(
+        float deltaTime)
     {
+    }
+
+    void Scene::OnRender()
+    {
+
+        for (auto entityID : m_Entities)
+        {
+
+            Entity entity(
+                entityID,
+                this);
+
+            if (
+                entity.HasComponent<TransformComponent>() &&
+                entity.HasComponent<SpriteComponent>())
+            {
+
+                auto &transform =
+                    entity.GetComponent<TransformComponent>();
+
+                auto &sprite =
+                    entity.GetComponent<SpriteComponent>();
+
+                Renderer2D::DrawRectangle(
+
+                    transform.Position,
+
+                    sprite.Size
+
+                );
+            }
+        }
     }
 
 }
