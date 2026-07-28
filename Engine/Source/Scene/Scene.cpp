@@ -7,6 +7,7 @@
 #include "Aurora/Scene/Scene.h"
 #include "Aurora/Scene/Entity.h"
 #include "Aurora/Systems/RenderSystem.h"
+#include "Aurora/Systems/ScriptSystem.h"
 
 namespace Aurora
 {
@@ -17,11 +18,13 @@ namespace Aurora
 
         m_SystemManager
             .AddSystem<RenderSystem>();
+
+        m_SystemManager
+            .AddSystem<ScriptSystem>();
     }
 
     Entity Scene::CreateEntity()
     {
-
         return m_Registry.CreateEntity();
     }
 

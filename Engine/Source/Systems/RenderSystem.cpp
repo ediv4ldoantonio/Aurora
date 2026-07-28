@@ -3,7 +3,6 @@
 #include "Aurora/Scene/Components/SpriteComponent.h"
 #include "Aurora/Renderer/Renderer2D.h"
 #include "Aurora/ECS/Registry.h"
-#include <Aurora/Core/Logger.h>
 
 namespace Aurora
 {

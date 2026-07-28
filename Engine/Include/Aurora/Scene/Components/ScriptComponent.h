@@ -32,7 +32,6 @@ namespace Aurora
 
     struct ScriptComponent : public Component
     {
-
         Scriptable *Instance = nullptr;
     };
 
