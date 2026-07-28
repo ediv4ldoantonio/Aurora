@@ -2,6 +2,8 @@
 
 #include <SDL3/SDL.h>
 
+#include <Aurora/Core/Logger.h>
+
 namespace Aurora
 {
 
@@ -35,30 +37,27 @@ namespace Aurora
     }
 
     void SDLRendererAPI::DrawRectangle(
-        const Vector2 &position,
-        const Vector2 &size)
+        const TransformComponent &transform,
+        const SpriteComponent &sprite)
     {
+        SDL_FRect rect;
 
-        SDL_FRect rectangle;
+        rect.x = transform.Position.x;
+        rect.y = transform.Position.y;
 
-        rectangle.x = position.x;
-
-        rectangle.y = position.y;
-
-        rectangle.w = size.x;
-
-        rectangle.h = size.y;
+        rect.w = transform.Scale.x;
+        rect.h = transform.Scale.y;
 
         SDL_SetRenderDrawColor(
             m_Renderer,
-            255,
-            255,
-            255,
-            255);
+            sprite.Color.R,
+            sprite.Color.G,
+            sprite.Color.B,
+            sprite.Color.A);
 
         SDL_RenderFillRect(
             m_Renderer,
-            &rectangle);
+            &rect);
     }
 
 }

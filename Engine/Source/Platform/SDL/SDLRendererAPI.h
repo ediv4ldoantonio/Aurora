@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Aurora/Renderer/RendererAPI.h"
+#include "Aurora/Scene/Components/SpriteComponent.h"
+#include "Aurora/Scene/Components/TransformComponent.h"
 
 struct SDL_Renderer;
 
@@ -21,8 +23,8 @@ namespace Aurora
         void EndFrame() override;
 
         void DrawRectangle(
-            const Vector2 &position,
-            const Vector2 &size) override;
+            const TransformComponent &transform,
+            const SpriteComponent &sprite) override;
 
     private:
         SDL_Renderer *m_Renderer;

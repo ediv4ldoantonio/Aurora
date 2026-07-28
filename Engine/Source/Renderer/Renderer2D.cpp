@@ -34,23 +34,12 @@ namespace Aurora
     }
 
     void Renderer2D::DrawRectangle(
-        const Vector2 &position,
-        const Vector2 &size)
+        const TransformComponent &transform,
+        const SpriteComponent &sprite)
     {
-
-        Vector2 screenPosition =
-            position;
-
-        if (s_Camera)
-        {
-            screenPosition =
-                s_Camera->WorldToScreen(
-                    position);
-        }
-
         s_Renderer->DrawRectangle(
-            screenPosition,
-            size);
+            transform,
+            sprite);
     }
 
     void Renderer2D::SetCamera(

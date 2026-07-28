@@ -2,6 +2,8 @@
 
 #include "Aurora/Math/Vector2.h"
 #include "Aurora/Renderer/Camera2D.h"
+#include "Aurora/Scene/Components/SpriteComponent.h"
+#include "Aurora/Scene/Components/TransformComponent.h"
 
 #include <memory>
 
@@ -24,8 +26,8 @@ namespace Aurora
         static void EndFrame();
 
         static void DrawRectangle(
-            const Vector2 &position,
-            const Vector2 &size);
+            const TransformComponent &transform,
+            const SpriteComponent &sprite);
 
         static void SetCamera(
             Camera2D *camera);

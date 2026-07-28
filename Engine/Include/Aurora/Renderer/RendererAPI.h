@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Aurora/Math/Vector2.h"
+#include "Aurora/Scene/Components/SpriteComponent.h"
+#include "Aurora/Scene/Components/TransformComponent.h"
 
 namespace Aurora
 {
@@ -18,8 +20,8 @@ namespace Aurora
         virtual void EndFrame() = 0;
 
         virtual void DrawRectangle(
-            const Vector2 &position,
-            const Vector2 &size) = 0;
+            const TransformComponent &transform,
+            const SpriteComponent &sprite) = 0;
     };
 
 }

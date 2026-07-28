@@ -37,6 +37,9 @@ public:
         transform.Position =
             {200, 200};
 
+        transform.Scale =
+            {100, 200};
+
         player.AddComponent<
             Aurora::SpriteComponent>();
     }

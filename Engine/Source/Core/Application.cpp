@@ -89,6 +89,8 @@ namespace Aurora
     void Application::OnEvent(
         Event &event)
     {
+        m_LayerStack.OnEvent(event);
+
         Input::ProcessEvent(event);
 
         EventDispatcher dispatcher(event);
@@ -102,8 +104,6 @@ namespace Aurora
 
                 return true;
             });
-
-        m_LayerStack.OnEvent(event);
     }
 
 }

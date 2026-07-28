@@ -23,11 +23,7 @@ namespace Aurora
             m_Specification.Height,
             SDL_WINDOW_RESIZABLE);
 
-        if (m_Window)
-        {
-            AURORA_LOG_INFO("Created window: ", m_Specification.Title, " (", m_Specification.Width, "x", m_Specification.Height, ")");
-        }
-        else
+        if (!m_Window)
         {
             AURORA_LOG_ERROR("Failed to create window: ", m_Specification.Title);
         }

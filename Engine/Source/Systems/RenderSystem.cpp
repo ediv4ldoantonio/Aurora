@@ -3,6 +3,7 @@
 #include "Aurora/Scene/Components/SpriteComponent.h"
 #include "Aurora/Renderer/Renderer2D.h"
 #include "Aurora/ECS/Registry.h"
+#include <Aurora/Core/Logger.h>
 
 namespace Aurora
 {
@@ -19,14 +20,15 @@ namespace Aurora
         for (auto entity :
              view.GetEntities())
         {
-
             auto &transform =
-                entity.GetComponent<
-                    TransformComponent>();
+                entity.GetComponent<TransformComponent>();
 
             auto &sprite =
-                entity.GetComponent<
-                    SpriteComponent>();
+                entity.GetComponent<SpriteComponent>();
+
+            Renderer2D::DrawRectangle(
+                transform,
+                sprite);
         }
     }
 
