@@ -25,12 +25,14 @@ namespace Aurora
 
         static void EndFrame();
 
-        static void DrawRectangle(
+        static void DrawSprite(
             const TransformComponent &transform,
             const SpriteComponent &sprite);
 
         static void SetCamera(
             Camera2D *camera);
+
+        static RendererAPI *GetRendererAPI();
 
     private:
         static RendererAPI *s_Renderer;

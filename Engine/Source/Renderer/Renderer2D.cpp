@@ -33,11 +33,11 @@ namespace Aurora
         s_Renderer->EndFrame();
     }
 
-    void Renderer2D::DrawRectangle(
+    void Renderer2D::DrawSprite(
         const TransformComponent &transform,
         const SpriteComponent &sprite)
     {
-        s_Renderer->DrawRectangle(
+        s_Renderer->DrawSprite(
             transform,
             sprite);
     }
@@ -46,5 +46,10 @@ namespace Aurora
         Camera2D *camera)
     {
         s_Camera = camera;
+    }
+
+    RendererAPI *Renderer2D::GetRendererAPI()
+    {
+        return s_Renderer;
     }
 }

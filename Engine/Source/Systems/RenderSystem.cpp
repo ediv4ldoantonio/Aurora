@@ -25,7 +25,7 @@ namespace Aurora
             auto &sprite =
                 entity.GetComponent<SpriteComponent>();
 
-            Renderer2D::DrawRectangle(
+            Renderer2D::DrawSprite(
                 transform,
                 sprite);
         }

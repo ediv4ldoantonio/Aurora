@@ -17,13 +17,13 @@ target_include_directories(
 )
 
 find_package(SDL3 REQUIRED)
+find_package(SDL3_image REQUIRED)
 
 target_link_libraries(
     Aurora
-
     PRIVATE
-
-    SDL3::SDL3
+        SDL3::SDL3
+        SDL3_image::SDL3_image
 )
 
 

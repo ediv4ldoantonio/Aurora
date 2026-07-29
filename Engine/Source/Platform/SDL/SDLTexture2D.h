@@ -21,6 +21,8 @@ namespace Aurora
         const std::string &
         GetPath() const override;
 
+        SDL_Texture *GetNativeTexture();
+
     private:
         SDL_Texture *m_Texture = nullptr;
 

@@ -2,7 +2,7 @@
 #include "SandboxLayer.h"
 #include <memory>
 
-int main()
+int main(int argc, char const *argv[])
 {
 
     Aurora::Application app;

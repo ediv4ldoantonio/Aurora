@@ -19,9 +19,11 @@ namespace Aurora
 
         virtual void EndFrame() = 0;
 
-        virtual void DrawRectangle(
-            const TransformComponent &transform,
-            const SpriteComponent &sprite) = 0;
+        virtual void DrawSprite(
+            const TransformComponent &,
+            const SpriteComponent &) = 0;
+
+        virtual void *GetNativeRenderer() = 0;
     };
 
 }

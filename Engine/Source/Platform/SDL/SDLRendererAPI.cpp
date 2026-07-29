@@ -1,4 +1,5 @@
 #include "SDLRendererAPI.h"
+#include "SDLTexture2D.h"
 
 #include <SDL3/SDL.h>
 
@@ -36,7 +37,7 @@ namespace Aurora
             m_Renderer);
     }
 
-    void SDLRendererAPI::DrawRectangle(
+    void SDLRendererAPI::DrawSprite(
         const TransformComponent &transform,
         const SpriteComponent &sprite)
     {
@@ -48,16 +49,49 @@ namespace Aurora
         rect.w = transform.Scale.x;
         rect.h = transform.Scale.y;
 
-        SDL_SetRenderDrawColor(
-            m_Renderer,
-            sprite.Color.R,
-            sprite.Color.G,
-            sprite.Color.B,
-            sprite.Color.A);
+        if (sprite.Texture)
+        {
+            auto texture =
+                static_cast<SDLTexture2D *>(
+                    sprite.Texture.get());
 
-        SDL_RenderFillRect(
-            m_Renderer,
-            &rect);
+            SDL_Texture *native =
+                texture->GetNativeTexture();
+
+            SDL_SetTextureColorMod(
+                native,
+                sprite.Tint.R,
+                sprite.Tint.G,
+                sprite.Tint.B);
+
+            SDL_SetTextureAlphaMod(
+                native,
+                sprite.Tint.A);
+
+            SDL_RenderTexture(
+                m_Renderer,
+                native,
+                nullptr,
+                &rect);
+        }
+        else
+        {
+
+            SDL_SetRenderDrawColor(
+                m_Renderer,
+                sprite.Tint.R,
+                sprite.Tint.G,
+                sprite.Tint.B,
+                sprite.Tint.A);
+
+            SDL_RenderFillRect(
+                m_Renderer,
+                &rect);
+        }
     }
 
+    void *SDLRendererAPI::GetNativeRenderer()
+    {
+        return m_Renderer;
+    }
 }

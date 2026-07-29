@@ -22,9 +22,11 @@ namespace Aurora
 
         void EndFrame() override;
 
-        void DrawRectangle(
+        void DrawSprite(
             const TransformComponent &transform,
             const SpriteComponent &sprite) override;
+
+        void *GetNativeRenderer() override;
 
     private:
         SDL_Renderer *m_Renderer;
