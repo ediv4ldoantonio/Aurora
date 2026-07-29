@@ -34,10 +34,10 @@ public:
         script.Instance =
             new PlayerMovement();
 
-        transform.Position =
+        transform.Transform.Position =
             {200, 200};
 
-        transform.Scale =
+        transform.Transform.Scale =
             {100, 200};
 
         player.AddComponent<

@@ -1,9 +1,8 @@
 #include "SDLRendererAPI.h"
 #include "SDLTexture2D.h"
+#include "Aurora/Core/Logger.h"
 
 #include <SDL3/SDL.h>
-
-#include <Aurora/Core/Logger.h>
 
 namespace Aurora
 {
@@ -43,11 +42,11 @@ namespace Aurora
     {
         SDL_FRect rect;
 
-        rect.x = transform.Position.x;
-        rect.y = transform.Position.y;
+        rect.x = transform.Transform.Position.x;
+        rect.y = transform.Transform.Position.y;
 
-        rect.w = transform.Scale.x;
-        rect.h = transform.Scale.y;
+        rect.w = transform.Transform.Scale.x;
+        rect.h = transform.Transform.Scale.y;
 
         if (sprite.Texture)
         {

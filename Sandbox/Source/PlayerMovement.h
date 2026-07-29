@@ -11,5 +11,5 @@ class PlayerMovement : public Aurora::Scriptable
 public:
     void OnUpdate(float dt) override
     {
-        }
+    }
 };
