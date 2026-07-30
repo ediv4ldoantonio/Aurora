@@ -2,6 +2,7 @@
 #include "Aurora/Scene/Components/TransformComponent.h"
 #include "Aurora/Scene/Components/RelationshipComponent.h"
 #include "Aurora/ECS/Registry.h"
+#include "Aurora/Core/Logger.h"
 
 namespace Aurora
 {

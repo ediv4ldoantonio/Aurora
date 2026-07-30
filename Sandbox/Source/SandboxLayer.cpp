@@ -47,6 +47,8 @@ SandboxLayer::SandboxLayer()
     script.Instance =
         new PlayerMovement();
 
+    script.Instance->SetEntity(player);
+
     player.AddComponent<
         Aurora::SpriteComponent>(Aurora::Color::Red);
 

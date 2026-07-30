@@ -3,7 +3,6 @@
 #include "Aurora/Events/KeyEvents.h"
 #include "Aurora/Events/Event.h"
 #include "Aurora/Events/EventDispatcher.h"
-#include <Aurora/Core/Logger.h>
 
 #include <cstring>
 

@@ -67,8 +67,6 @@ namespace Aurora
 
             case SDL_EVENT_KEY_DOWN:
             {
-                AURORA_LOG_INFO(SDLKeyToAurora(
-                    sdlEvent.key.key));
                 KeyPressedEvent keyEvent(
                     SDLKeyToAurora(
                         sdlEvent.key.key));
@@ -82,7 +80,7 @@ namespace Aurora
             case SDL_EVENT_KEY_UP:
             {
 
-                KeyPressedEvent keyEvent(
+                KeyReleasedEvent keyEvent(
                     SDLKeyToAurora(
                         sdlEvent.key.key));
 
