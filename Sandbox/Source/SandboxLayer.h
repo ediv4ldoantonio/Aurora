@@ -6,7 +6,6 @@
 #include <Aurora/Scene/Components/SpriteComponent.h>
 #include <Aurora/Scene/Components/TransformComponent.h>
 #include <Aurora/Scene/Components/NameComponent.h>
-#include <Aurora/Scene/Components/ScriptComponent.h>
 #include <Aurora/Renderer/Camera2D.h>
 #include <Aurora/Renderer/Renderer2D.h>
 #include <Aurora/Renderer/Color.h>

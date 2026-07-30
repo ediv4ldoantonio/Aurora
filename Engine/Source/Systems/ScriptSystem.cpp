@@ -16,7 +16,16 @@ namespace Aurora
             auto &script =
                 entity.GetComponent<ScriptComponent>();
 
-            if (script.Instance)
+            if (!script.Instance)
+            {
+                script.Instance =
+                    script.InstantiateScript();
+
+                script.Instance->SetEntity(entity);
+
+                script.Instance->OnCreate();
+            }
+            else
             {
                 script.Instance->OnUpdate(dt);
             }

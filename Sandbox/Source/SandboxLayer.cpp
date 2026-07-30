@@ -41,13 +41,8 @@ SandboxLayer::SandboxLayer()
     w_Transform.LocalTransform.Scale =
         {50, 50};
 
-    auto &script =
-        player.AddComponent<Aurora::ScriptComponent>();
-
-    script.Instance =
-        new PlayerMovement();
-
-    script.Instance->SetEntity(player);
+    player.AddComponent<Aurora::ScriptComponent>()
+        .Bind<PlayerMovement>();
 
     player.AddComponent<
         Aurora::SpriteComponent>(Aurora::Color::Red);
