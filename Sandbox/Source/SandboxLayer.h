@@ -5,6 +5,7 @@
 #include <Aurora/Scene/Scene.h>
 #include <Aurora/Scene/Components/SpriteComponent.h>
 #include <Aurora/Scene/Components/TransformComponent.h>
+#include <Aurora/Scene/Components/NameComponent.h>
 #include <Aurora/Scene/Components/ScriptComponent.h>
 #include <Aurora/Renderer/Camera2D.h>
 #include <Aurora/Renderer/Renderer2D.h>
@@ -22,10 +23,10 @@ public:
             std::make_shared<Aurora::Scene>();
 
         auto player =
-            m_Scene->CreateEntity();
+            m_Scene->CreateEntity("Player");
 
         auto &transform =
-            player.AddComponent<
+            player.GetComponent<
                 Aurora::TransformComponent>();
 
         auto &script =

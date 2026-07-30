@@ -11,7 +11,7 @@ namespace Aurora
 
     public:
         Scene();
-        Entity CreateEntity();
+        Entity CreateEntity(const std::string &name = "Entity");
 
         void OnUpdate(
             float deltaTime);

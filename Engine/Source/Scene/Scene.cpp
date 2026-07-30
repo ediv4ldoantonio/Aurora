@@ -3,6 +3,8 @@
 #include "Aurora/Scene/Components/SpriteComponent.h"
 #include "Aurora/Scene/Components/TransformComponent.h"
 #include "Aurora/Scene/Components/ScriptComponent.h"
+#include "Aurora/Scene/Components/IDComponent.h"
+#include "Aurora/Scene/Components/NameComponent.h"
 #include <Aurora/Core/Logger.h>
 #include "Aurora/Scene/Scene.h"
 #include "Aurora/Scene/Entity.h"
@@ -23,9 +25,15 @@ namespace Aurora
             .AddSystem<ScriptSystem>();
     }
 
-    Entity Scene::CreateEntity()
+    Entity Scene::CreateEntity(const std::string &name)
     {
-        return m_Registry.CreateEntity();
+        Entity entity = m_Registry.CreateEntity();
+
+        entity.AddComponent<IDComponent>();
+        entity.AddComponent<NameComponent>(name);
+        entity.AddComponent<TransformComponent>();
+
+        return entity;
     }
 
     void Scene::OnUpdate(
