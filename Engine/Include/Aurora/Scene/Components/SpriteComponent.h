@@ -10,9 +10,16 @@ namespace Aurora
 
     struct SpriteComponent : public Component
     {
-        Aurora::Color Tint = Color::White;
+        Aurora::Color Tint;
 
         std::shared_ptr<Texture2D> Texture;
+
+        SpriteComponent() = default;
+
+        explicit SpriteComponent(const Aurora::Color &tint)
+            : Tint(tint)
+        {
+        }
     };
 
 }

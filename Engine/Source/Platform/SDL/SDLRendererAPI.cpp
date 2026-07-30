@@ -42,11 +42,11 @@ namespace Aurora
     {
         SDL_FRect rect;
 
-        rect.x = transform.Transform.Position.x;
-        rect.y = transform.Transform.Position.y;
+        rect.x = transform.WorldTransform.Position.x;
+        rect.y = transform.WorldTransform.Position.y;
 
-        rect.w = transform.Transform.Scale.x;
-        rect.h = transform.Transform.Scale.y;
+        rect.w = transform.WorldTransform.Scale.x;
+        rect.h = transform.WorldTransform.Scale.y;
 
         if (sprite.Texture)
         {

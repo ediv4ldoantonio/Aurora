@@ -8,7 +8,8 @@ namespace Aurora
 
     struct TransformComponent : public Component
     {
-        Aurora::Transform Transform;
+        Aurora::Transform LocalTransform;
+        Aurora::Transform WorldTransform;
     };
 
 }

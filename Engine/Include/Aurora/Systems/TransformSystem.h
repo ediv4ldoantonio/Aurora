@@ -14,11 +14,6 @@ namespace Aurora
             float dt) override;
 
     private:
-        void UpdateEntity(
-            Entity entity,
-            const Vector2 &parentPosition,
-            float parentRotation,
-            const Vector2 &parentScale,
-            Registry &registry);
+        void UpdateEntity(Entity entity);
     };
 }

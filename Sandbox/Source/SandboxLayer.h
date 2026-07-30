@@ -9,6 +9,7 @@
 #include <Aurora/Scene/Components/ScriptComponent.h>
 #include <Aurora/Renderer/Camera2D.h>
 #include <Aurora/Renderer/Renderer2D.h>
+#include <Aurora/Renderer/Color.h>
 
 #include "PlayerMovement.h"
 
@@ -16,40 +17,7 @@ class SandboxLayer : public Aurora::Layer
 {
 
 public:
-    SandboxLayer()
-        : Layer("Sandbox")
-    {
-        m_Scene =
-            std::make_shared<Aurora::Scene>();
-
-        auto player =
-            m_Scene->CreateEntity("Player");
-
-        auto weapon =
-            m_Scene->CreateEntity("Weapon");
-
-        m_Scene->SetParent(weapon, player);
-
-        auto &transform =
-            player.GetComponent<
-                Aurora::TransformComponent>();
-
-        auto &script =
-            player.AddComponent<Aurora::ScriptComponent>();
-
-        script.Instance =
-            new PlayerMovement();
-
-        transform.Transform.Position =
-            {200, 200};
-
-        transform.Transform.Scale =
-            {100, 200};
-
-        player.AddComponent<
-            Aurora::SpriteComponent>();
-    }
-
+    SandboxLayer();
     void OnUpdate(float dt) override;
     void OnRender() override;
     void OnEvent(

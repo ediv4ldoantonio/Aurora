@@ -11,6 +11,7 @@
 #include "Aurora/Scene/Entity.h"
 #include "Aurora/Systems/RenderSystem.h"
 #include "Aurora/Systems/ScriptSystem.h"
+#include "Aurora/Systems/TransformSystem.h"
 
 #include <algorithm>
 
@@ -26,6 +27,9 @@ namespace Aurora
 
         m_SystemManager
             .AddSystem<ScriptSystem>();
+
+        m_SystemManager
+            .AddSystem<TransformSystem>();
     }
 
     Entity Scene::CreateEntity(const std::string &name)
