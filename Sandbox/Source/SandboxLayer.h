@@ -25,6 +25,11 @@ public:
         auto player =
             m_Scene->CreateEntity("Player");
 
+        auto weapon =
+            m_Scene->CreateEntity("Weapon");
+
+        m_Scene->SetParent(weapon, player);
+
         auto &transform =
             player.GetComponent<
                 Aurora::TransformComponent>();

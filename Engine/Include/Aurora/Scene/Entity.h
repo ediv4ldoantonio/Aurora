@@ -36,6 +36,22 @@ namespace Aurora
         template <typename T>
         bool HasComponent();
 
+        operator bool() const
+        {
+            return IsValid();
+        }
+
+        bool operator==(const Entity &other) const
+        {
+            return m_ID == other.m_ID &&
+                   m_Registry == other.m_Registry;
+        }
+
+        bool operator!=(const Entity &other) const
+        {
+            return !(*this == other);
+        }
+
     private:
         EntityID m_ID = 0;
 

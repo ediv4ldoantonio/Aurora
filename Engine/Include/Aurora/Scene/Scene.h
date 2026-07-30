@@ -18,6 +18,13 @@ namespace Aurora
 
         void OnRender();
 
+        void SetParent(
+            Entity child,
+            Entity parent);
+
+        void RemoveParent(
+            Entity child);
+
     private:
         Registry m_Registry;
         SystemManager m_SystemManager;
